@@ -83,26 +83,3 @@ npm run dev
 ```
 *The frontend development server will start on **`http://localhost:5173`**.*
 
----
-
-## 🌐 Cloud Deployment Guide
-
-### 1. Deploy the Backend on **Render**
-1. Connect your repository to [Render](https://render.com).
-2. Create a new **Web Service** and set:
-   * **Root Directory:** `backend`
-   * **Build Command:** `pip install -r requirements.txt`
-   * **Start Command:** `gunicorn --bind 0.0.0.0:$PORT app:app` (Gunicorn is already configured in the dependencies).
-3. Under the **Environment** tab, add your environment variables:
-   * `GEMINI_API_KEY` = `your_key`
-4. Copy your live Render URL (e.g. `https://emotionsenseai1.onrender.com`).
-
-### 2. Deploy the Frontend on **Vercel**
-1. Connect your repository to [Vercel](https://vercel.com).
-2. Create a new project and set:
-   * **Root Directory:** `frontend`
-   * **Framework Preset:** `Vite` (auto-detected)
-3. Under **Environment Variables**, configure the API pointer:
-   * **Key:** `VITE_API_URL`
-   * **Value:** `https://your-render-url.onrender.com/api`
-4. Click **Deploy**. Vercel will build your static assets and provide your live application link!
