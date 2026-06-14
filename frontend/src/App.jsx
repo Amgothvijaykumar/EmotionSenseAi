@@ -155,6 +155,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [error, setError] = useState("");
   const chatEndRef = useRef(null);
+  const chatSectionRef = useRef(null);
 
   // Initialize Theme and Local Storage
   useEffect(() => {
@@ -193,6 +194,13 @@ function App() {
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatMessages]);
+
+  // Scroll smoothly to Chat Companion window when opened
+  useEffect(() => {
+    if (showChatWindow && chatSectionRef.current) {
+      chatSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [showChatWindow]);
 
   // Speech Recognition Setup
   useEffect(() => {
@@ -588,7 +596,7 @@ function App() {
 
           {/* AI Chat Companion Section */}
           {showChatWindow && result && (
-            <div className="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 backdrop-blur-xl rounded-3xl p-5 shadow-xl shadow-slate-200/50 dark:shadow-black/30 flex flex-col h-[400px]">
+            <div ref={chatSectionRef} className="bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 backdrop-blur-xl rounded-3xl p-5 shadow-xl shadow-slate-200/50 dark:shadow-black/30 flex flex-col h-[400px]">
               <div className="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-3 mb-3">
                 <div className="flex items-center space-x-2">
                   <MessageSquare className={`w-5 h-5 ${activeTheme.textColor}`} />
