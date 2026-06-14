@@ -1,9 +1,0 @@
-Flask
-flask-cors
-scikit-learn
-pandas
-numpy
-nltk
-requests
-python-dotenv
-gunicorn

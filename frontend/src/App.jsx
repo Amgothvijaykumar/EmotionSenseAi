@@ -10,7 +10,11 @@ import { Pie } from 'react-chartjs-2';
 // Register Chart.js elements
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5002/api";
+let baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5002/api";
+if (baseUrl && !baseUrl.endsWith('/api')) {
+  baseUrl = baseUrl.replace(/\/$/, '') + '/api';
+}
+const API_BASE_URL = baseUrl;
 
 const EMOTION_THEMES = {
   Happy: {
